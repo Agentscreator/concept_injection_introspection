@@ -34,6 +34,10 @@
 - **Strength 5** was too weak to change the output.
 - **Strength 15 or more** broke generation into loops like "defined defined defined…" before the model could report anything.
 
+![Heatmaps showing detection rate, false alarm rate, d-prime, and naming rate across layers and strengths](heatmaps.png)
+
+![Heatmaps showing detection rate, false alarm rate, d-prime, and naming rate across layers and strengths](heatmaps.png)
+
 ## Files
 
 | File | Contents |
