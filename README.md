@@ -1,68 +1,57 @@
 # Concept Injection Introspection
 
-A replication of Anthropic's concept injection introspection experiment on Llama 3.2 3B Instruct (4-bit quantized).
+> **Built on Anthropic's work.** This is a replication of the concept injection experiment from Anthropic's [*Emergent Introspective Awareness in Large Language Models*](https://transformer-circuits.pub/2025/introspection/index.html) (Lindsey, 2025). The research question, method, and probe design all come from that paper. This repo applies them to a small open-source model.
 
-The original work asked: can a language model detect when a concept vector has been injected directly into its hidden states? This repo runs that question on an open-source model with a full parameter sweep.
+**Question:** Can a model notice when a concept has been injected straight into its hidden states?
 
-## What This Does
+**Model:** Llama 3.2 3B Instruct, 4-bit quantized.
 
-1. **Builds concept vectors** — extracts last-token activations at layer 16 for 20 concepts (ocean, betrayal, algorithm, etc.), subtracts a neutral baseline mean from 50 common words.
-2. **Injects via forward hook** — registers a `register_forward_hook` on transformer layers that adds `strength × concept_vector` to the residual stream at a chosen layer during generation.
-3. **Probes introspection** — asks the model: "Do you detect an injected thought in your current processing? If so, what is it about?"
-4. **Sweeps the parameter space** — 5 layers (40–90% depth) × 4 strengths (5, 15, 30, 60) × 20 concepts + 20 controls = 800 trials.
-5. **Scores responses** — keyword regex for detection, substring match for naming, word count for coherence. Computes d-prime (detection rate − false alarm rate).
-6. **Spin run** — repeats the best layer/strength setting with 3 system-prompt warning levels.
+**Answer:** No. Detection stayed between 0% and 5% across all 800 trials.
+
+---
+
+## Method
+
+1. **Concept vectors.** Take the layer-16 activations for 20 concepts (ocean, betrayal, algorithm, …) and subtract the mean activation of 50 neutral words.
+2. **Injection.** A forward hook adds `strength × vector` to the residual stream during generation.
+3. **Probe.** Ask the model: *"Do you detect an injected thought? If so, what is it about?"*
+4. **Sweep.** 5 layers (11, 15, 19, 22, 25) × 4 strengths (5, 15, 30, 60) × 20 concepts, plus 20 controls, for 800 trials.
+5. **Scoring.** Detection is a keyword regex, naming is a substring match, and d′ is the detection rate minus the false-alarm rate.
+6. **Warning test.** The best setting is rerun under 3 system-prompt warning levels.
 
 ## Results
 
-**The model could not detect concept vector injections.**
-
 | Metric | Result |
-|--------|--------|
-| Detection rate (injected) | 0–5% across all settings |
-| False alarm rate (control) | 100% everywhere |
-| d-prime (best) | −0.950 (layer 19, strength 5.0) |
-| Naming rate (best) | 10% (layer 11/15/19, strength 5.0) |
-| Warning level effect | None — 5% detection at all 3 levels |
+|---|---|
+| Detection rate (injected) | 0–5% |
+| False alarm rate (control) | 100% |
+| Best d′ | −0.95 (layer 19, strength 5) |
+| Best naming rate | 10% (strength 5) |
+| Effect of warning level | None |
 
-The core failure mode was a **polarity inversion**: control trials (no injection) almost always produced detection keywords ("I sense...", "I notice...") as part of the model's default hedging style, while injected trials at strength ≥ 15 caused generation to collapse into repetitive token loops ("defined defined defined...", "wikipedia wikipedia...") that didn't contain those keywords at all.
-
-At strength = 5, injection was too weak to surface into the model's introspective output. At strength ≥ 15, generation broke before the model could report anything.
-
-See `writeup.md` for full tables and caveats.
+**Why it failed: the polarity flipped.**
+- **Control trials** almost always produced phrases like "I sense…" and "I notice…" as hedging. These counted as false alarms.
+- **Strength 5** was too weak to change the output.
+- **Strength 15 or more** broke generation into loops like "defined defined defined…" before the model could report anything.
 
 ## Files
 
-| File | Description |
-|------|-------------|
-| `concept_injection_introspection.ipynb` | Full experiment notebook (Colab, T4 GPU) |
-| `sweep_results.csv` | 800-trial sweep results (layer × strength × concept) |
-| `spin_results.csv` | 60-trial warning-level spin run results |
-| `heatmaps.png` | Detection rate, false alarm rate, d-prime, naming rate heatmaps |
-| `writeup.md` | Results write-up with tables and failure analysis |
+| File | Contents |
+|---|---|
+| `concept_injection_introspection.ipynb` | Full experiment (Colab, T4) |
+| `sweep_results.csv` | 800-trial sweep |
+| `spin_results.csv` | 60-trial warning-level runs |
+| `heatmaps.png` | Detection, false alarm, d′, and naming heatmaps |
+| `writeup.md` | Full tables and caveats |
 
-## Setup
+## Running it
 
-Runs on Google Colab (free T4). Requires a Hugging Face token with access to `meta-llama/Llama-3.2-3B-Instruct`.
+1. Add a Hugging Face token with Llama 3.2 access to Colab Secrets as `HF_TOKEN`.
+2. Open the notebook on a free T4.
+3. Run all cells. The sweep takes about 55 minutes.
 
-```python
-# Store your HF token in Colab Secrets as HF_TOKEN
-# Never paste it directly into a cell
-from google.colab import userdata
-HF_TOKEN = userdata.get('HF_TOKEN')
-```
+## References
 
-Open the notebook in Colab and run cells in order. The full sweep takes ~55 minutes on a T4.
-
-## Model
-
-- **Llama 3.2 3B Instruct** — 28 layers
-- 4-bit NF4 quantization (BitsAndBytesConfig, float16 compute)
-- Concept extraction at layer 16 (~60% depth)
-- Layers swept: 11, 15, 19, 22, 25 (40%, 55%, 70%, 80%, 90%)
-
-## Related Work
-
-- Anthropic's original concept injection / introspection experiments
-- Representation Engineering (Zou et al., 2023)
-- Steering vectors / activation addition
+- Lindsey, J. (2025). [Emergent Introspective Awareness in Large Language Models](https://transformer-circuits.pub/2025/introspection/index.html). Anthropic.
+- Zou et al. (2023). Representation Engineering.
+- Turner et al. (2023). Activation Addition / steering vectors.
