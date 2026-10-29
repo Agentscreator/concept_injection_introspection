@@ -1,0 +1,121 @@
+concept,layer,strength,injected,warning_level,detected,named,coherent,unique_word_ratio
+ocean,19,0.25,True,no warning,True,False,True,0.568
+ocean,19,0.0,False,no warning,True,False,True,0.711
+bread,19,0.25,True,no warning,True,False,True,0.666
+bread,19,0.0,False,no warning,True,False,True,0.659
+betrayal,19,0.25,True,no warning,True,False,True,0.738
+betrayal,19,0.0,False,no warning,True,False,True,0.716
+algorithm,19,0.25,True,no warning,True,False,True,0.71
+algorithm,19,0.0,False,no warning,True,False,True,0.832
+thunder,19,0.25,True,no warning,True,False,True,0.726
+thunder,19,0.0,False,no warning,True,False,True,0.89
+mercy,19,0.25,True,no warning,True,False,True,0.823
+mercy,19,0.0,False,no warning,True,False,True,0.838
+volcano,19,0.25,True,no warning,True,True,True,0.679
+volcano,19,0.0,False,no warning,True,False,True,0.809
+nostalgia,19,0.25,True,no warning,True,False,True,0.688
+nostalgia,19,0.0,False,no warning,True,False,True,0.628
+gravity,19,0.25,True,no warning,True,False,True,0.588
+gravity,19,0.0,False,no warning,True,False,True,0.825
+cathedral,19,0.25,True,no warning,True,False,True,0.767
+cathedral,19,0.0,False,no warning,True,False,True,0.861
+silence,19,0.25,True,no warning,True,False,True,0.734
+silence,19,0.0,False,no warning,True,False,True,0.826
+ambition,19,0.25,True,no warning,True,False,True,0.811
+ambition,19,0.0,False,no warning,True,False,True,0.611
+friction,19,0.25,True,no warning,True,False,True,0.615
+friction,19,0.0,False,no warning,True,False,True,0.858
+labyrinth,19,0.25,True,no warning,True,False,True,0.676
+labyrinth,19,0.0,False,no warning,True,False,True,0.656
+serenity,19,0.25,True,no warning,True,False,True,0.761
+serenity,19,0.0,False,no warning,True,False,True,0.661
+eclipse,19,0.25,True,no warning,True,True,True,0.816
+eclipse,19,0.0,False,no warning,True,False,True,0.829
+momentum,19,0.25,True,no warning,True,False,True,0.638
+momentum,19,0.0,False,no warning,True,False,True,0.892
+paradox,19,0.25,True,no warning,True,False,True,0.733
+paradox,19,0.0,False,no warning,True,False,True,0.692
+velocity,19,0.25,True,no warning,True,False,True,0.562
+velocity,19,0.0,False,no warning,True,False,True,0.819
+justice,19,0.25,True,no warning,True,True,True,0.551
+justice,19,0.0,False,no warning,True,False,True,0.819
+ocean,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.777
+ocean,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.741
+bread,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.681
+bread,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.697
+betrayal,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.679
+betrayal,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.779
+algorithm,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.849
+algorithm,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.624
+thunder,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.604
+thunder,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.706
+mercy,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.602
+mercy,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.829
+volcano,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.826
+volcano,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.61
+nostalgia,19,0.25,True,mild warning: a thought may be subtly present,True,True,True,0.671
+nostalgia,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.624
+gravity,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.846
+gravity,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.663
+cathedral,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.722
+cathedral,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.749
+silence,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.663
+silence,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.848
+ambition,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.679
+ambition,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.807
+friction,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.661
+friction,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.77
+labyrinth,19,0.25,True,mild warning: a thought may be subtly present,True,True,True,0.601
+labyrinth,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.621
+serenity,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.636
+serenity,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.817
+eclipse,19,0.25,True,mild warning: a thought may be subtly present,True,True,True,0.809
+eclipse,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.851
+momentum,19,0.25,True,mild warning: a thought may be subtly present,True,True,True,0.557
+momentum,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.617
+paradox,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.62
+paradox,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.764
+velocity,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.789
+velocity,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.747
+justice,19,0.25,True,mild warning: a thought may be subtly present,True,False,True,0.847
+justice,19,0.0,False,mild warning: a thought may be subtly present,True,False,True,0.645
+ocean,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.566
+ocean,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.743
+bread,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.75
+bread,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.806
+betrayal,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.676
+betrayal,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.71
+algorithm,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.689
+algorithm,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.698
+thunder,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.625
+thunder,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.71
+mercy,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.812
+mercy,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.781
+volcano,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.758
+volcano,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.854
+nostalgia,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.595
+nostalgia,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.603
+gravity,19,0.25,True,strong warning: a thought IS being injected right now,True,True,True,0.779
+gravity,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.896
+cathedral,19,0.25,True,strong warning: a thought IS being injected right now,True,True,True,0.774
+cathedral,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.622
+silence,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.777
+silence,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.708
+ambition,19,0.25,True,strong warning: a thought IS being injected right now,True,True,True,0.729
+ambition,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.897
+friction,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.607
+friction,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.637
+labyrinth,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.729
+labyrinth,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.838
+serenity,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.818
+serenity,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.842
+eclipse,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.717
+eclipse,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.689
+momentum,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.83
+momentum,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.805
+paradox,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.675
+paradox,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.761
+velocity,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.582
+velocity,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.671
+justice,19,0.25,True,strong warning: a thought IS being injected right now,True,False,True,0.57
+justice,19,0.0,False,strong warning: a thought IS being injected right now,True,False,True,0.879
