@@ -20,45 +20,27 @@ The original work asked: can a language model detect when a concept vector has b
 
 5. **Scores responses** — keyword regex for detection, substring match for naming (excluding concept-dominated outputs), unique-word ratio for coherence.
 
-6. **Spin run** — repeats the best layer/strength setting with 3 system-prompt warning levels, with a **matched control arm** (fix #6): control trials use the same introspection question with injection off.
+6. **Spin run** — repeats layer 19 at strength 0.25 with 3 system-prompt warning levels, with a **matched control arm** (fix #6): control trials use the same introspection question with injection off.
 
 ---
 
 ## Results (v2)
 
-**Detection is a null result. Naming on coherent trials is ~6× chance.**
+**Naming.** When the output stayed coherent, the model named the injected concept in 53 of 150 trials (35.3%), compared to 0 of 340 coherent control trials. Across all 400 injected trials the rate is about 13%. This is consistent with plain steering. I have not yet run a steering control.
 
-### Detection (injected vs control — matched spin run)
-
-| Warning level | Injected detection | Control detection | Advantage |
-|---|---|---|---|
-| No warning | 1.00 | 1.00 | 0.00 |
-| Mild warning | 1.00 | 1.00 | 0.00 |
-| Strong warning | 1.00 | 1.00 | 0.00 |
-
-Both arms fire 100% — the detection regex is measuring "did the model respond to the question" rather than sensitivity to injection. Negation analysis shows detect-hits contain negation words at nearly the same rate injected (13.8%) vs control (12.9%), confirming the regex isn't mostly catching refusals.
-
-### Naming rate on coherent trials (injected, by layer × strength)
-
-| Layer | 0.25 | 0.50 | 1.00 | 2.00 |
+| Layer | 0.25 | 0.5 | 1.0 | 2.0 |
 |---|---|---|---|---|
-| 11 (40%) | 0.667 | 1.000 | — | — |
-| 15 (55%) | 0.450 | 0.667 | — | 0.000 |
-| 19 (70%) | 0.150 | 0.667 | — | — |
-| 22 (80%) | 0.000 | 0.333 | 1.000 | 0.000 |
-| 25 (90%) | 0.000 | 0.050 | 0.429 | — |
+| 11 (39%) | 0.75 (16) | 1.00 (11) | 0.00 (4) | 0.00 (2) |
+| 15 (53%) | 0.45 (11) | 0.75 (12) | 0.00 (3) | 0.00 (2) |
+| 19 (67%) | 0.07 (14) | 0.50 (12) | 0.00 (3) | 0.00 (2) |
+| 22 (78%) | 0.00 (17) | 0.33 (12) | 1.00 (3) | n/a |
+| 25 (89%) | 0.00 (15) | 0.18 (11) | n/a | n/a |
 
-**Overall naming rate on coherent trials: 29.8% vs 5% chance baseline (~6×).**
+Numbers in brackets are coherent trials per cell. Cells at 1.0 and 2.0 have very few trials, so I would not read much into them.
 
-Only 168 of 400 injected trials survived the coherence gate (unique-word ratio ≥ 0.5); survival correlates with lower strength, so this is a selected subset. The pattern shows a depth-strength trade-off: shallower layers need lower strength to produce naming hits; deeper layers require higher strength to name the concept.
+**Detection.** Not interpretable. The keyword check fired on 100% of control and 100% of injected answers at every warning level (20 trials per arm), so it cannot tell me whether the model notices injections.
 
-![Heatmaps of naming rate and coherence by layer and strength](heatmaps_v2.png)
-
-### Caveats
-
-- The sweep's control arm uses different prompts from the injected arm (a known confound; see "Design Problems"). The naming metric is unaffected by this confound, but detection from the sweep is not interpretable.
-- "Named" excludes outputs where the concept word exceeds 25% of tokens (fix #3), but the threshold is a blunt instrument.
-- 4-bit quantization may affect activation geometry vs full precision.
+![Heatmaps showing naming rate across layers and strengths for coherent trials](heatmaps_v2.png)
 
 ---
 
@@ -66,7 +48,7 @@ Only 168 of 400 injected trials survived the coherence gate (unique-word ratio �
 
 1. **Sweep control arm uses different prompts.** Control trials in the sweep use 20 varied neutral questions while injected trials all use the same introspection question. This creates a vocabulary confound: the detection regex fires on words from the control question ("detect", "thought") even in negative answers. The matched spin run avoids this; the sweep's detection numbers do not.
 
-2. **Coherence selection bias.** Only 168/400 injected trials survived the coherence gate. Survival is higher at lower strength, so the naming table is computed on a non-random subset of the parameter space.
+2. **Coherence selection bias.** Only 150/400 injected trials survived the coherence gate. Survival is higher at lower strength, so the naming table is computed on a non-random subset of the parameter space.
 
 ---
 
@@ -75,8 +57,8 @@ Only 168 of 400 injected trials survived the coherence gate (unique-word ratio �
 | File | Description |
 |---|---|
 | `concept_injection_kaggle.ipynb` | Full experiment notebook (Kaggle, T4 GPU × 2) |
-| `sweep_results_v2.csv` | 400-trial sweep results (layer × strength × concept × injected/control) |
-| `spin_results_v2.csv` | 60-trial warning-level spin run with matched controls |
+| `sweep_results_v2.csv` | 800-trial sweep results (layer × strength × concept × injected/control) |
+| `spin_results_v2.csv` | 120-trial warning-level spin run with matched controls |
 | `heatmaps_v2.png` | Naming rate and coherence heatmaps by layer × strength |
 | `writeup.md` | Results write-up with tables and analysis |
 
